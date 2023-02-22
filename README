@@ -1,0 +1,73 @@
+MACIUCA ALEXANDRU-PETRU 324CA
+
+Arhiva contine:
+
+-->> Makefile: 
+        contine regula de run p1(Fermat.py), p2(MillerRabin.py) si run best
+        contine regula generate-output-p1 care genereaza toate output-urile
+        lui Fermat, respectiv generate-output-p2 pentru MillerRabin
+
+-->> fisierele .py: 
+        MillerRabin.py: 
+                contine algoritmul Miller Rabin adaptat dupa un pseudocod 
+                cu bucati de cod preluate si de pe
+                https://www.geeksforgeeks.org/primality-test-set-3-miller-rabin/
+        Fermat.py: 
+                contine algoritmul Fermat adaptat si el dupa un pseudocod
+                cu bucati de cod preluate de pe 
+                https://www.geeksforgeeks.org/primality-test-set-2-fermet-method/
+ 
+
+-->> folderele cu teste: 
+        in/out; contin fisiere de tip .in/.out
+        se gasesc cate 40 teste in fiecare folder
+
+-->> structura fisierelor:
+        1) Pe prima linie se afla numarul de iteratii pentru ambii algoritmi
+           in urma testarii am observat ca pentru acelasi input si acelasi
+           numar de iteratii, algoritmul Fermat este mult mai slab decat 
+           MillerRabin, motiv pentru care Fermat preia "iter" dar efectueaza
+           "iter * 5" numar de iteratii. 
+           Cu alte cuvinte Fermat va executa
+           de 5 ori mai multe iteratii decat MillerRabin pentru a putea crea
+           output-uri asemanatoare.
+        
+        2) Pentru a putea controla mai bine procesul de testare am ales 
+           sa parcurg fiecare numar din intervalul [first, last] verificand
+           daca este prim, caz in care il printez la output.
+           Pe a doua linie se afla numarul first, iar pe a treia last.
+
+        3) Fisierele difera atat in volumul de numere cat si in dimensiunea lor.
+
+-->> fisierele cu statistica:
+        Fiecare algoritm calculeaza cate numere are de verificat in intervalul
+        [first,last] si pune acea valoare in "value".
+
+        Apoi pentru fiecare numar prim gasit in intervalul [first,last] ambii
+        algoritmi vor incrementa un contor "passed_prime_test" care retine
+        cate numere prime a gasit fiecare algoritm.
+        
+        Se realizeaza apoi statistica 
+        "percentage of prime found" = "passed_prime_test" / "value".
+
+        Deoarece algoritmul Fermat nu este atat de performant, ne asteptam
+        ca acesta sa gaseasca ca fiind prime numere care nu sunt cu adevarat
+        prime motiv pentru care procentul afisat ar trebui sa fie mai mare
+        pe fiecare test in parte, in cel mai bun caz identic cu cel afisat
+        de MillerRabin.
+
+-->> fisierele cu timpi:
+        Fiecare algoritm afiseaza pentru fiecare test in parte, timpii de
+        executie.
+
+-->> disclaimer:
+        Checker-ul trebuie rulat odata pentru MillerRabin pentru a completa
+        fisierele de timpi si statistici, respectiv Fermat.
+        : python3 checker.py --algo best/p2 --task 8
+        : python3 checker.py --algo p1 --task 8
+
+-->> observatie:
+        In urma testarii performantelor algorimilor cu checker-ul, am observat
+        ca algoritmul Miller Rabin are rezultate mult mai bune. 
+        
+        Am mai observat ca pe numere foarte mari, ambii algoritmi sunt slabi.
